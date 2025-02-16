@@ -1,0 +1,131 @@
+html, body {
+    height: 100%;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* for alignment all card in a row */
+/* .container {
+    margin: 10px;
+    display: flex;
+    overflow-x: auto;
+} */
+/* need to decrease card wide */
+/* Also need to change <div className="max-w-7xl mx-auto sm:px-6 lg:px-8"> to 8xl in Dashboard and 2 times in AuthenticatedLayout */
+
+.card {
+    flex: 0 0 auto;
+    display: grid;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 5px #ccc;
+    border-radius: 5px;
+    height: auto;
+    width: 30%;
+    margin: 30px 20px 0px;
+    float: left;
+    background-color: #ecf0f1;
+}
+
+.heading {
+    margin: 10px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 20px;
+    border-bottom: 1px solid #dcdcdc;
+    /* justify-content: space-between;
+    margin: 4rem auto;
+    max-width: 90%; */
+}
+
+.content {
+
+}
+
+.card_input {
+    margin: 20px;
+}
+
+.card_form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task_input{
+    font-weight: 500;
+    background-color: #f9f9f9;
+    border: 1px solid #bdc3c7;
+    width: 75%;
+    border-radius: 5px;
+}
+
+.task_input::placeholder {
+    color: #95a5a6;
+}
+
+.task_submit{
+    width: 20%;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #0984e3;
+}
+
+.task_card {
+    position: relative;
+    margin: 20px 20px;
+    padding: 10px 25px 10px 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #ccc;
+    border: 1px solid #bdc3c7;
+    cursor: grab;
+}
+
+.task_card:active{
+    opacity: 0.7;
+    border: 1px solid #111;
+}
+
+.task_delete {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    right: 5px;
+    bottom: 5px;
+}
+
+.task_delete:hover {
+    background-color: #ebebeb;
+}
+
+.task_delete_icon {
+    width: 20px;
+    height: 20px;
+}
+
+.drop_area {
+    color: #bdc3c7;
+    border: 1px dashed #bdc3c7;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 10px;
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.hide_area {
+    opacity: 0;
+}
