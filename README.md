@@ -89,3 +89,5 @@ In cmd,
 ## Database migrations
 1. php artisan migrate
 2. Create the MySQL database
+
+Here Dashboard.jsx is the file to act as root of React components. (like App)
