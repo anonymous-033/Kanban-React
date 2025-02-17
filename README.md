@@ -68,3 +68,24 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 >>>>>>> aec18ed (Add and Delete Element (No drag and drop))
+
+
+
+
+# Laravel-React Integration (Using Laravel Breeze and installing React with inertia)
+
+**Laravel Breeze** offers **React** and **Vue** scaffolding via an **Inertia** frontend implementation. Inertia is a Laravel package that can be installed to use JS frameworks like React or Vue and connect it to the Laravel application in order to use all the features that Laravel has to offer inside a single page application. Inertia allows to build modern, single-page React and Vue applications using classic server-side routing and controllers.
+
+## Create Project
+In cmd,
+1. "Laravel new project-name"
+2. install starter kit --> Laravel Breeze
+3. Breeze stack install --> React with Inertia
+4. Optional feature --> Not needed
+5. Testing framework --> Pest
+6. Initialize git repository --> Depends on need
+7. database application --> MySQL
+
+## Database migrations
+1. php artisan migrate
+2. Create the MySQL database
