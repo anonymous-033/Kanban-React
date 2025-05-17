@@ -1,36 +1,49 @@
 import React, { useState } from 'react';
 // import '../../css/custom.css';
 
-const CardInput = ({addElement, status}) => {
+const CardInput = ({status, setTasks}) => {
 
+  const [taskData, setTaskData] = useState({
+    task: "",
+    status: status
+  });
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);  
+    setInputValue(event.target.value);
+    const value =  event.target.value;
+    setTaskData(prev => {
+      return {...prev, task: value}
+    })
+    console.log("Task Data inside ", taskData);
   };
 
   const handleAddClick = (event) => {
-    if(inputValue.trim() != '') {
-      addElement(inputValue, status);
-    }
-    setInputValue(''); // Clear the input field after adding
     event.preventDefault();
+    if(inputValue.trim() != '') {
+      setTasks(prev => {
+        return [...prev, taskData];
+      })
+    }
+    console.log("Input Value inside ", inputValue);
+
+    setInputValue(''); // Clear the input field after adding
   };
   
 
-  console.log(inputValue); 
+  // console.log("Input Value ", inputValue);
 
   return (
     <div className="card_input">
-        <form className="card_form" >
+        <form onSubmit={handleAddClick}  className="card_form" >
             <input 
               type="text" 
-              onChange={handleInputChange} 
               className="task_input" 
               placeholder="+ Enter your task" 
+              onChange={handleInputChange} 
               value={inputValue}
             />
-            <button onClick={handleAddClick} className="task_submit">Add</button>
+            <button className="task_submit">Add</button>
         </form>
     </div>
   )

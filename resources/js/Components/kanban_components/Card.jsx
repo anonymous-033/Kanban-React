@@ -7,51 +7,61 @@ import DropArea from './DropArea';
 
 
 
-const Card = ({status}) => {
+const Card = ({ status, setTasks, tasks, deleteTask, setActiveTask, onDrop, color }) => {
   // const { taskList } = usePage().props;
 
 
-  const [tasks, setTasks] = useState([]);
-  const [activeTask, setActiveTask] = useState(null);
-
-
   //add new element in a card
-  const addElement = (inputValue, status) => {
-    const uniqueId = uuidv4();
-    console.log("id ",tasks.length, "content", inputValue, "status", status);
-    const newComponent = {
-      id: tasks.length, // Use length as a simple unique ID
-      content: inputValue,
-      status: status
-    };
+  // const addElement = (inputValue, status) => {
+  //   const uniqueId = uuidv4();
+  //   console.log("id ",tasks.length, "content", inputValue, "status", status);
+  //   const newComponent = {
+  //     id: tasks.length, // Use length as a simple unique ID
+  //     content: inputValue,
+  //     status: status
+  //   };
     
-    setTasks([...tasks, newComponent]);
-    // event.preventDefault();
-  };
+  //   setTasks([...tasks, newComponent]);
+  //   // event.preventDefault();
+  // };
 
 
-  //delete element from a card
-  const deleteElement = (id) => {
-    // console.log(id);
-    const newTasks = tasks.filter( component => component.id != id)
-    setTasks(newTasks);
-  }
+  
   // console.log("Random ",activeTask);
 
   
-  const showCardId = (status, position) => {
-    console.log(activeTask + " is going to place into " + status + " and at the position " + position);
-  }
+  // const showCardId = (status, position) => {
+  //   console.log(activeTask + " is going to place into " + status + " and at the position " + position);
+  // }
 
   return (
     <div className="card">
         {/* <h1>{taskList[0].task}</h1> */}
-        <h1 className="heading">
+        <h1 className="heading" style={{backgroundColor: color}}>
             {status}
         </h1>
-        <div className="content">
+        <CardInput status={status} setTasks={setTasks}/>
+        <DropArea onDrop={()=>{onDrop(status, 0)}}/>
+        {tasks.map((singleTask,index)=>{
+          return (
+            singleTask.status == status &&
+            <React.Fragment key={index} >
+              <TaskCard
+                id={index}
+                content={singleTask.task}
+                deleteTask={deleteTask}
+                setActiveTask={setActiveTask}
+              />
+              <DropArea onDrop={()=>{onDrop(status, index+1)}}/>
+            </React.Fragment>
+          )
+        })}
+        {/* <TaskCard 
+          
+        /> */}
+        {/* <div className="content">
             <CardInput addElement={addElement} status={status}/>
-            {/* <DropArea /> */}
+            <DropArea />
             <DropArea 
               showCardId={showCardId} 
               status={status} 
@@ -69,7 +79,7 @@ const Card = ({status}) => {
                       activeTask={activeTask}
                       setActiveTask = {setActiveTask}
                     />
-                    {/* <DropArea /> */}
+                    <DropArea />
                     <DropArea 
                       showCardId={showCardId} 
                       status={status} 
@@ -80,7 +90,7 @@ const Card = ({status}) => {
                 )}
             )}
         </div>
-        <h1>Active Card: {activeTask}</h1>
+        <h1>Active Card: {activeTask}</h1> */}
     </div>
   )
 }

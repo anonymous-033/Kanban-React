@@ -3,48 +3,51 @@ import { Head, usePage } from '@inertiajs/react';
 import Card from "../Components/kanban_components/Card";
 import Checkbox from '@/Components/Checkbox';
 import Draggable from 'react-draggable';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+// Saving data in local storage
+const oldTasks = localStorage.getItem("tasks");
+console.log("Old Tasks ", oldTasks);
 
 export default function Dashboard({ auth }) {
+
+    const [tasks, setTasks] = useState(JSON.parse(oldTasks) || []);
+
+    useEffect(() => {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks])
+    
+    // console.log("Tasks ",tasks);
+    const [activeTask, setActiveTask] = useState(null);
+
+    //delete element from a card
+    const deleteTask = (id) => {
+        const tasksAfterDeletion = tasks.filter((task, index)=>{
+            return index!=id
+        })
+        setTasks(tasksAfterDeletion);
+    }
+
+    const onDrop = (status, position) => {
+        console.log(activeTask," is going to placed in ", status, " at position ", position);
+        const taskToMove = tasks[activeTask];
+        
+        const updatedTasks = tasks.filter((task, index)=>{
+            console.log("Index ", index);
+            return index != activeTask;
+        })
+
+        updatedTasks.splice(position, 0, {
+            ...taskToMove, 
+            status: status
+        })
+
+        setTasks(updatedTasks);
+    }
     // console.log(auth);
 
-    // console.log("Status", status);
-    // const [tasks, setTasks] = useState([]);
-
-    // console.log("tasks", tasks);
-
-
-    // const addElement = (inputValue, status) => {
-    //     console.log("id ",tasks.length, "content", inputValue, "status", status);
-    //     const newComponent = {
-    //     id: tasks.length, // Use length as a simple unique ID
-    //     content: inputValue,
-    //     status: status
-    //     };
-        
-    //     setTasks([...tasks, newComponent]);
-    //     // event.preventDefault();
-    // };
-
-    // const deleteElement = (id) => {
-    //     console.log(id);
-    //     const newTasks = tasks.filter( component => component.id != id)
-    //     setTasks(newTasks);
-    // }
     
-    // if(activeTask == null || activeTask == undefined) return;
 
-    // const updatedTasks = tasks.filter((task, index) => index != activeTask);
-
-    // updatedTasks.splice(index, 0, {
-    //     ...taskToMove,
-    //     status: status
-    // })  
-
-    // setTasks(updatedTasks);
-
-    var taskIndex = -1;
 
     return (
         <AuthenticatedLayout
@@ -64,9 +67,9 @@ export default function Dashboard({ auth }) {
                                 (<Card status={status.status}/>)
                             )
                         } */}
-                        <Card status="To do" />
-                        <Card status="In progress" />
-                        <Card status="Completed" />
+                        <Card status="To do" setTasks={setTasks} tasks={tasks} deleteTask={deleteTask} setActiveTask={setActiveTask} onDrop={onDrop} color="#f1948a"/>
+                        <Card status="In progress" setTasks={setTasks} tasks={tasks} deleteTask={deleteTask} setActiveTask={setActiveTask} onDrop={onDrop} color="#f9e79f"/>
+                        <Card status="Completed" setTasks={setTasks} tasks={tasks} deleteTask={deleteTask} setActiveTask={setActiveTask} onDrop={onDrop} color="#82e0aa"/>
                     </div>
                 </div>
             </div>

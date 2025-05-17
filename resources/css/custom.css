@@ -1,5 +1,21 @@
+
 html, body {
     height: 100%;
+    /* background-color: #f2f0dc; */
+    background-color: red !important;
+    
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+.container {
+    background-color: black !important;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 #app {
@@ -24,20 +40,23 @@ html, body {
     display: grid;
     flex-wrap: wrap;
     box-shadow: 0 2px 5px #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     height: auto;
     width: 30%;
     margin: 30px 20px 0px;
     float: left;
     background-color: #ecf0f1;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
 }
 
 .heading {
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     font-weight: bold;
     font-size: 18px;
-    padding: 20px;
+    padding: 30px 20px;
     border-bottom: 1px solid #dcdcdc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     /* justify-content: space-between;
     margin: 4rem auto;
     max-width: 90%; */
@@ -48,7 +67,7 @@ html, body {
 }
 
 .card_input {
-    margin: 20px;
+    margin: 30px 20px;
 }
 
 .card_form {
@@ -79,7 +98,7 @@ html, body {
 
 .task_card {
     position: relative;
-    margin: 20px 20px;
+    margin: 0px 20px 20px;
     padding: 10px 25px 10px 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -90,13 +109,13 @@ html, body {
 
 .task_card:active{
     opacity: 0.7;
-    border: 1px solid #111;
+    border: 2px solid #111;
 }
 
 .task_delete {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -128,4 +147,5 @@ html, body {
 
 .hide_area {
     opacity: 0;
+    /* height: 10px; */
 }
